@@ -1,9 +1,8 @@
+import 'package:belly_kitchen/models/meal.dart';
+import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../models/meal.dart';
-import 'on_tap_opacity.dart';
 
 final ingredients = [
   'assets/icons/melon.svg',
@@ -14,12 +13,15 @@ final ingredients = [
 ];
 
 class MealCard extends StatelessWidget {
+  const MealCard({
+    required this.mealData,
+    Key? key,
+  }) : super(key: key);
   final Meal mealData;
 
-  const MealCard({Key? key, required this.mealData}) : super(key: key);
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
-      throw 'Could not launch $url';
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -50,14 +52,12 @@ class MealCard extends StatelessWidget {
                 )),
               ),
               const Spacer(),
-              Container(
-                child: Image.network(
-                  mealData.image,
-                  width: 140,
-                  filterQuality: FilterQuality.high,
-                  height: 140,
-                  fit: BoxFit.fill,
-                ),
+              Image.network(
+                mealData.image,
+                width: 140,
+                filterQuality: FilterQuality.high,
+                height: 140,
+                fit: BoxFit.fill,
               )
             ]),
             const SizedBox(height: 12),
@@ -91,7 +91,7 @@ class MealCard extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) {
+                separatorBuilder: (context, index) {
                   return const SizedBox(width: 8);
                 },
               ),

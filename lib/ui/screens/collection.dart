@@ -1,15 +1,13 @@
+import 'package:belly_kitchen/models/meal.dart';
 import 'package:belly_kitchen/providers/meal_provider.dart';
+import 'package:belly_kitchen/ui/widgets/meal_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../models/meal.dart';
-import '../widgets/meal_grid.dart';
-import '../widgets/on_tap_opacity.dart';
-
 class Collection extends HookConsumerWidget {
-  final List<Meal> data;
 
-  const Collection({Key? key, required this.data}) : super(key: key);
+  const Collection({required this.data, Key? key,}) : super(key: key);
+  final List<Meal> data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

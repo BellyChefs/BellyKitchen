@@ -1,8 +1,7 @@
+import 'package:belly_kitchen/providers/meal_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../providers/meal_provider.dart';
 
 class SearchTab extends HookConsumerWidget {
   const SearchTab({Key? key}) : super(key: key);

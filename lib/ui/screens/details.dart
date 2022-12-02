@@ -1,17 +1,15 @@
-import 'package:belly_kitchen/providers/meal_provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:belly_kitchen/main.dart';
+import 'package:belly_kitchen/models/meal.dart';
+import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../main.dart';
-import '../../models/meal.dart';
-import '../widgets/on_tap_opacity.dart';
-
 class Details extends StatefulWidget {
+  const Details({
+    required this.data,
+    Key? key,
+  }) : super(key: key);
   final Meal data;
-
-  const Details({Key? key, required this.data}) : super(key: key);
 
   @override
   State<Details> createState() => _DetailsState();
@@ -20,7 +18,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
-      throw 'Could not launch $url';
+      throw Exception('Could not launch $url');
     }
   }
 

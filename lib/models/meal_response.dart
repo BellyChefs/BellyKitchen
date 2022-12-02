@@ -1,9 +1,7 @@
+import 'package:belly_kitchen/models/meal.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'meal.dart';
-
 part 'meal_response.freezed.dart';
-
 part 'meal_response.g.dart';
 
 @freezed

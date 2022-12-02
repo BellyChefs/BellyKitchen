@@ -1,16 +1,15 @@
+import 'package:belly_kitchen/models/meal.dart';
+import 'package:belly_kitchen/ui/screens/details.dart';
+import 'package:belly_kitchen/ui/widgets/meal_card.dart';
 import 'package:flutter/material.dart';
 import 'package:tcard/tcard.dart';
 
-import '../../models/meal.dart';
-import '../screens/details.dart';
-import 'meal_card.dart';
-import 'on_tap_opacity.dart';
-
 class RecommendedMealsCards extends StatelessWidget {
+  const RecommendedMealsCards({
+    required this.recommendedList,
+    Key? key,
+  }) : super(key: key);
   final List<Meal> recommendedList;
-
-  const RecommendedMealsCards({Key? key, required this.recommendedList})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +19,11 @@ class RecommendedMealsCards extends StatelessWidget {
         size: Size(MediaQuery.of(context).size.width, 400),
         cards: List.generate(
           recommendedList.length,
-          (int index) {
+          (index) {
             return GestureDetector(
-              onTap: () => Navigator.push(
+              onTap: () => Navigator.push<dynamic>(
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute<StatefulWidget>(
                     builder: (context) =>
                         Details(data: recommendedList[index])),
               ),

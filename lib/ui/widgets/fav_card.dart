@@ -1,13 +1,14 @@
+import 'package:belly_kitchen/models/meal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../models/meal.dart';
 
 class FavCard extends StatefulWidget {
-  final Meal meal;
+  const FavCard({
+    required this.meal,
+    super.key,
+  });
 
-  const FavCard({super.key, required this.meal});
+  final Meal meal;
 
   @override
   FavCardState createState() => FavCardState();
@@ -17,16 +18,16 @@ class FavCardState extends State<FavCard> {
   var height = 93.0;
   var padding = const EdgeInsets.only(top: 14);
   var border = const Border(
-      bottom: BorderSide(
-    width: 1.0,
-    color: Color(0xFFE5E5E5),
-  ));
+    bottom: BorderSide(
+      color: Color(0xFFE5E5E5),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: UniqueKey(),
-      onDismissed: (DismissDirection direction) {},
+      onDismissed: (direction) {},
       child: Padding(
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Container(

@@ -1,11 +1,10 @@
+import 'package:belly_kitchen/providers/meal_provider.dart';
+import 'package:belly_kitchen/ui/widgets/animated_horizontal_list.dart';
+import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
+import 'package:belly_kitchen/ui/widgets/recommended_meals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../providers/meal_provider.dart';
-import '../animated_horizontal_list.dart';
-import '../on_tap_opacity.dart';
-import '../recommended_meals.dart';
 
 final categories = {
   {'assets/icons/beer.svg', 'Beer'},
@@ -24,27 +23,9 @@ final categories = {
 Category parseCategory(int index) {
   switch (index) {
     case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
-    case 0:
-      return Category.Category0;
+      return Category.category0;
     default:
-      return Category.Category0;
+      return Category.category0;
   }
 }
 

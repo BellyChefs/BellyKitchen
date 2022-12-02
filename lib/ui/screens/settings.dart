@@ -1,10 +1,9 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:belly_kitchen/providers/settings_providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../providers/settings_providers.dart';
 
 class Settings extends HookConsumerWidget {
   const Settings({Key? key}) : super(key: key);
@@ -14,8 +13,7 @@ class Settings extends HookConsumerWidget {
     final settings = ref.watch(settingsProvider);
     final details =
         settings.maybeWhen(data: (details) => details, orElse: () => null);
-    final darkModeSwitch =
-        useState(details?.themeMode == 'Dark' ? true : false);
+    final darkModeSwitch = useState(details?.themeMode == 'Dark');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -53,11 +51,11 @@ class Settings extends HookConsumerWidget {
                   Center(
                     child: RichText(
                         text: TextSpan(
-                      text: "Name Surname\n",
+                      text: 'Name Surname\n',
                       style: Theme.of(context).textTheme.headline4,
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Personal Info",
+                          text: 'Personal Info',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
@@ -68,7 +66,7 @@ class Settings extends HookConsumerWidget {
                     height: 50,
                     width: 50,
                     child: FloatingActionButton(
-                      heroTag: "person",
+                      heroTag: 'person',
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -106,7 +104,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "language_rounded",
+                        heroTag: 'language_rounded',
                         elevation: 0,
                         backgroundColor: Colors.orange.withAlpha(30),
                         onPressed: () {},
@@ -133,7 +131,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "language",
+                        heroTag: 'language',
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -177,7 +175,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "notification",
+                        heroTag: 'notification',
                         elevation: 0,
                         backgroundColor: Colors.blueAccent.withAlpha(30),
                         onPressed: () {},
@@ -198,7 +196,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "notifications",
+                        heroTag: 'notifications',
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -222,7 +220,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "dark_mode",
+                        heroTag: 'dark_mode',
                         elevation: 0,
                         backgroundColor: Colors.indigo.withAlpha(30),
                         onPressed: () {},
@@ -242,7 +240,7 @@ class Settings extends HookConsumerWidget {
                     CupertinoSwitch(
                       value: darkModeSwitch.value,
                       activeColor: Colors.indigoAccent,
-                      onChanged: (bool value) {
+                      onChanged: (value) {
                         ref
                             .read(settingsProvider.notifier)
                             .setThemeMode(value ? 'Dark' : 'Light');
@@ -260,7 +258,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "help",
+                        heroTag: 'help',
                         elevation: 0,
                         backgroundColor: Colors.pinkAccent.withAlpha(30),
                         onPressed: () {},
@@ -281,7 +279,7 @@ class Settings extends HookConsumerWidget {
                       height: 50,
                       width: 50,
                       child: FloatingActionButton(
-                        heroTag: "rfjjfn",
+                        heroTag: 'rfjjfn',
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

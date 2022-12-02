@@ -1,10 +1,9 @@
-import 'package:belly_kitchen/ui/widgets/tabs/search_tab.dart';
+import 'package:belly_kitchen/ui/widgets/tabs/favorite_tab.dart';
 import 'package:belly_kitchen/ui/widgets/tabs/home_tab.dart';
+import 'package:belly_kitchen/ui/widgets/tabs/search_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../widgets/tabs/favorite_tab.dart';
 
 const List<Widget> tabs = [
   FavTab(),
@@ -41,6 +40,12 @@ class Home extends HookConsumerWidget {
           tabsTitle[selectedIndex.value],
           style: Theme.of(context).textTheme.caption,
         ),
+        actions: [
+          ElevatedButton(
+            onPressed: () => throw Exception(),
+            child: Text('Throw Test Exception', style: Theme.of(context).textTheme.caption,),
+          ),
+        ],
       ),
       body: Center(child: tabs[selectedIndex.value]),
       bottomNavigationBar: BottomNavigationBar(

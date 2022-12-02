@@ -1,11 +1,13 @@
+import 'package:belly_kitchen/models/meal.dart';
+import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/meal.dart';
-import 'on_tap_opacity.dart';
-
 class MealGrid extends StatelessWidget {
+  const MealGrid({
+    required this.mealGridList,
+    Key? key,
+  }) : super(key: key);
   final List<Meal> mealGridList;
-  const MealGrid({Key? key, required this.mealGridList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,9 @@ class MealGrid extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
-        childAspectRatio: 1.0,
       ),
       delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
+        (context, index) {
           return OnTapOpacityContainer(
             onTap: () {},
             curve: Curves.ease,
@@ -29,7 +30,6 @@ class MealGrid extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Theme.of(context).shadowColor.withOpacity(0.1),
-                    spreadRadius: 0,
                     blurRadius: 4,
                   )
                 ],

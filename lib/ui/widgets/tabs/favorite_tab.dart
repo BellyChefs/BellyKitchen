@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:belly_kitchen/main.dart';
+import 'package:belly_kitchen/ui/widgets/fav_card.dart';
 import 'package:flutter/material.dart';
-
-import '../../../main.dart';
-import '../fav_card.dart';
 
 class FavTab extends StatelessWidget {
   const FavTab({Key? key}) : super(key: key);

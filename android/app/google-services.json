@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "242995410968",
+    "project_id": "bellykitchen-619a4",
+    "storage_bucket": "bellykitchen-619a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242995410968:android:bc4469f7b159fc948b6b6d",
+        "android_client_info": {
+          "package_name": "com.BellyChefs.belly_kitchen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242995410968-ituc3hukpmj43lt4iem1i4j1t5lobnig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7iV_g0Ppwcnu5Qz05l8QA82254e_CDcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242995410968-ituc3hukpmj43lt4iem1i4j1t5lobnig.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "242995410968-fpk38n89ksmapnndmr994h1n6bt4lbm6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.BellyChefs.bellyKitchen"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

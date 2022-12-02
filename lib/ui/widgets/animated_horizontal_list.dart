@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AnimatedScrollViewItem extends StatefulWidget {
   const AnimatedScrollViewItem({
-    Key? key,
     required this.child,
+    Key? key,
   }) : super(key: key);
 
   final Widget child;
