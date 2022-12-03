@@ -1,7 +1,9 @@
 import 'package:belly_kitchen/providers/meal_provider.dart';
+import 'package:belly_kitchen/repository/database.dart';
 import 'package:belly_kitchen/ui/widgets/animated_horizontal_list.dart';
+import 'package:belly_kitchen/ui/widgets/meal_list.dart';
 import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
-import 'package:belly_kitchen/ui/widgets/recommended_meals.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,16 +31,16 @@ Category parseCategory(int index) {
   }
 }
 
-class HomeTab extends HookConsumerWidget {
+class HomeTab extends ConsumerWidget {
   const HomeTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final recommendedMeals = ref.watch(recommendedProvider);
+    final database = ref.watch(databaseProvider);
     return ListView(
       children: <Widget>[
         const SizedBox(
-          height: 32,
+          height: 24,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -102,6 +104,9 @@ class HomeTab extends HookConsumerWidget {
             ),
           ),
         ),
+        const SizedBox(
+          height: 24,
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
@@ -121,18 +126,24 @@ class HomeTab extends HookConsumerWidget {
             ],
           ),
         ),
-        recommendedMeals.when(
-          data: (data) {
-            return RecommendedMealsCards(
-              recommendedList: data,
-            );
+        StreamBuilder<dynamic>(
+          stream: database.allMeals,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (snapshot.error != null) {
+              return const Center(
+                child: Text('Some error occurred'),
+              );
+            }
+            final List<QueryDocumentSnapshot<Object?>>? result =
+                snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
+
+            return MealList(result!);
           },
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          error: (error, e) => Center(
-            child: Text(error.toString().trim()),
-          ),
         ),
       ],
     );

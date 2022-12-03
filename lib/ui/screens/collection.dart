@@ -1,16 +1,19 @@
 import 'package:belly_kitchen/models/meal.dart';
 import 'package:belly_kitchen/providers/meal_provider.dart';
-import 'package:belly_kitchen/ui/widgets/meal_grid.dart';
+import 'package:belly_kitchen/repository/database.dart';
+import 'package:belly_kitchen/ui/widgets/meal_list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Collection extends HookConsumerWidget {
+class Collection extends ConsumerWidget {
 
   const Collection({required this.data, Key? key,}) : super(key: key);
   final List<Meal> data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final database = ref.watch(databaseProvider);
     final mealByCategory = ref.watch(mealByCategoryProvider);
     return Scaffold(
       appBar: AppBar(
@@ -24,34 +27,33 @@ class Collection extends HookConsumerWidget {
             onPressed: () => Navigator.pop(context),
             splashRadius: 24.0),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 64.0, bottom: 20),
-                child: Text('Explore',
-                    style: Theme.of(context).textTheme.headline1),
-              ),
-            ),
-            mealByCategory.when(
-              data: (data) {
-                return MealGrid(
-                  mealGridList: data,
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 64.0, bottom: 20, right: 24.0, left: 24.0),
+            child: Text('Explore',
+                style: Theme.of(context).textTheme.headline1),
+          ),
+          StreamBuilder<dynamic>(
+            stream: database.allVegs,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              },
-              loading: () => const SliverToBoxAdapter(
-                child: Center(child: CircularProgressIndicator()),
-              ),
-              error: (error, e) => SliverToBoxAdapter(
-                child: Center(
-                  child: Text(error.toString().trim()),
-                ),
-              ),
-            ),
-          ],
-        ),
+              }
+              if (snapshot.error != null) {
+                return const Center(
+                  child: Text('Some error occurred'),
+                );
+              }
+              final List<QueryDocumentSnapshot<Object?>>? result =
+              snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
+
+              return MealList(result!);
+            },
+          ),
+        ],
       ),
     );
   }

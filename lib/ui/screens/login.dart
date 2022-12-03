@@ -14,7 +14,6 @@ Status type = Status.login;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-  static const routename = '/LoginPage';
 
   @override
   State<LoginPage> createState() => _LoginPageState();

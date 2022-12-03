@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:belly_kitchen/providers/auth_provider.dart';
 import 'package:belly_kitchen/providers/settings_providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,11 @@ class Settings extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
+    final userStatus = ref.watch(fireBaseAuthProvider);
     final details =
         settings.maybeWhen(data: (details) => details, orElse: () => null);
     final darkModeSwitch = useState(details?.themeMode == 'Dark');
+    final authState = ref.watch(authStateProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -42,20 +45,31 @@ class Settings extends HookConsumerWidget {
               ),
               Row(
                 children: [
-                  FloatingActionButton(
-                    heroTag: '',
-                    elevation: 0,
-                    onPressed: () {},
+                  CircleAvatar(
+                    radius: 32,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4), // Border radius
+                      child: ClipOval(
+                        child: Image.network(
+                          userStatus.currentUser?.photoURL ??
+                              'https://media.tarkett-image.com/large/TH_24567081_24594081_24596081_24601081_24563081_24565081_24588081_001.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 24),
                   Center(
                     child: RichText(
                         text: TextSpan(
-                      text: 'Name Surname\n',
+                      text:
+                          '${userStatus.currentUser?.displayName ?? 'Please login'}\n',
                       style: Theme.of(context).textTheme.headline4,
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Personal Info',
+                          text: userStatus.currentUser?.email == null
+                              ? 'Or create account'
+                              : 'Personal Info',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
@@ -71,7 +85,18 @@ class Settings extends HookConsumerWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        authState.when<dynamic>(
+                            data: (data) {
+                              if (data != null)
+                                Navigator.pushNamed(context, '/profile');
+                              Navigator.pushNamed(context, '/login');
+                            },
+                            loading: () =>
+                                Navigator.pushNamed(context, '/login'),
+                            error: (e, trace) =>
+                                Navigator.pushNamed(context, '/login'));
+                      },
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 18,

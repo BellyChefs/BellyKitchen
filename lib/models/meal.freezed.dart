@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'meal.dart';
 
@@ -22,10 +22,12 @@ Meal _$MealFromJson(Map<String, dynamic> json) {
 mixin _$Meal {
   String get title => throw _privateConstructorUsedError;
   int get calories => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
+  List<dynamic> get category => throw _privateConstructorUsedError;
   String get video => throw _privateConstructorUsedError;
   String get time => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  double get rate => throw _privateConstructorUsedError;
+  String get mealId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,10 +42,12 @@ abstract class $MealCopyWith<$Res> {
   $Res call(
       {String title,
       int calories,
-      String category,
+      List<dynamic> category,
       String video,
       String time,
-      String image});
+      String image,
+      double rate,
+      String mealId});
 }
 
 /// @nodoc
@@ -65,6 +69,8 @@ class _$MealCopyWithImpl<$Res, $Val extends Meal>
     Object? video = null,
     Object? time = null,
     Object? image = null,
+    Object? rate = null,
+    Object? mealId = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -78,7 +84,7 @@ class _$MealCopyWithImpl<$Res, $Val extends Meal>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<dynamic>,
       video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -90,6 +96,14 @@ class _$MealCopyWithImpl<$Res, $Val extends Meal>
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      mealId: null == mealId
+          ? _value.mealId
+          : mealId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -104,10 +118,12 @@ abstract class _$$_MealCopyWith<$Res> implements $MealCopyWith<$Res> {
   $Res call(
       {String title,
       int calories,
-      String category,
+      List<dynamic> category,
       String video,
       String time,
-      String image});
+      String image,
+      double rate,
+      String mealId});
 }
 
 /// @nodoc
@@ -125,6 +141,8 @@ class __$$_MealCopyWithImpl<$Res> extends _$MealCopyWithImpl<$Res, _$_Meal>
     Object? video = null,
     Object? time = null,
     Object? image = null,
+    Object? rate = null,
+    Object? mealId = null,
   }) {
     return _then(_$_Meal(
       title: null == title
@@ -136,9 +154,9 @@ class __$$_MealCopyWithImpl<$Res> extends _$MealCopyWithImpl<$Res, _$_Meal>
           : calories // ignore: cast_nullable_to_non_nullable
               as int,
       category: null == category
-          ? _value.category
+          ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<dynamic>,
       video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -151,6 +169,14 @@ class __$$_MealCopyWithImpl<$Res> extends _$MealCopyWithImpl<$Res, _$_Meal>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      mealId: null == mealId
+          ? _value.mealId
+          : mealId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -158,13 +184,16 @@ class __$$_MealCopyWithImpl<$Res> extends _$MealCopyWithImpl<$Res, _$_Meal>
 /// @nodoc
 @JsonSerializable()
 class _$_Meal implements _Meal {
-  const _$_Meal(
+  _$_Meal(
       {required this.title,
       required this.calories,
-      required this.category,
+      required final List<dynamic> category,
       required this.video,
       required this.time,
-      required this.image});
+      required this.image,
+      required this.rate,
+      required this.mealId})
+      : _category = category;
 
   factory _$_Meal.fromJson(Map<String, dynamic> json) => _$$_MealFromJson(json);
 
@@ -172,18 +201,28 @@ class _$_Meal implements _Meal {
   final String title;
   @override
   final int calories;
+  final List<dynamic> _category;
   @override
-  final String category;
+  List<dynamic> get category {
+    if (_category is EqualUnmodifiableListView) return _category;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_category);
+  }
+
   @override
   final String video;
   @override
   final String time;
   @override
   final String image;
+  @override
+  final double rate;
+  @override
+  final String mealId;
 
   @override
   String toString() {
-    return 'Meal(title: $title, calories: $calories, category: $category, video: $video, time: $time, image: $image)';
+    return 'Meal(title: $title, calories: $calories, category: $category, video: $video, time: $time, image: $image, rate: $rate, mealId: $mealId)';
   }
 
   @override
@@ -194,17 +233,26 @@ class _$_Meal implements _Meal {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.calories, calories) ||
                 other.calories == calories) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
+            const DeepCollectionEquality().equals(other._category, _category) &&
             (identical(other.video, video) || other.video == video) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.mealId, mealId) || other.mealId == mealId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, calories, category, video, time, image);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      calories,
+      const DeepCollectionEquality().hash(_category),
+      video,
+      time,
+      image,
+      rate,
+      mealId);
 
   @JsonKey(ignore: true)
   @override
@@ -221,13 +269,15 @@ class _$_Meal implements _Meal {
 }
 
 abstract class _Meal implements Meal {
-  const factory _Meal(
+  factory _Meal(
       {required final String title,
       required final int calories,
-      required final String category,
+      required final List<dynamic> category,
       required final String video,
       required final String time,
-      required final String image}) = _$_Meal;
+      required final String image,
+      required final double rate,
+      required final String mealId}) = _$_Meal;
 
   factory _Meal.fromJson(Map<String, dynamic> json) = _$_Meal.fromJson;
 
@@ -236,13 +286,17 @@ abstract class _Meal implements Meal {
   @override
   int get calories;
   @override
-  String get category;
+  List<dynamic> get category;
   @override
   String get video;
   @override
   String get time;
   @override
   String get image;
+  @override
+  double get rate;
+  @override
+  String get mealId;
   @override
   @JsonKey(ignore: true)
   _$$_MealCopyWith<_$_Meal> get copyWith => throw _privateConstructorUsedError;

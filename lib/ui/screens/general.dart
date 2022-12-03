@@ -40,12 +40,6 @@ class Home extends HookConsumerWidget {
           tabsTitle[selectedIndex.value],
           style: Theme.of(context).textTheme.caption,
         ),
-        actions: [
-          ElevatedButton(
-            onPressed: () => throw Exception(),
-            child: Text('Throw Test Exception', style: Theme.of(context).textTheme.caption,),
-          ),
-        ],
       ),
       body: Center(child: tabs[selectedIndex.value]),
       bottomNavigationBar: BottomNavigationBar(
