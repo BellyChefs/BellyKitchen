@@ -1,5 +1,9 @@
 # Belly Kitchen App - Web & IOS & Android
 
+> ⚠ Web App hosted on Firebase 
+>
+>  Follow link 👉 https://bellykitchen-619a4.web.app/#/
+
 <p align="center"><img src="https://github.com/BellyChefs/BellyKitchen/blob/main/shots.jpeg" alt="General image"></p>
 
 
@@ -17,6 +21,48 @@
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+
+## Features supported
+### :compass: General stuff
+
+* [x] Some fancy animations
+* [x] Builds successfully for iOS
+* [x] Builds successfully for Web
+* [x] Builds successfully for Android
+* [x] Dark theme
+* [x] App works and it is stable — no crashes or broken behaviour (at least)
+* [x] App is fully completed and has at least two reasonable screens (About or Settings are not counted)
+* [x] Custom app icon
+* [ ] Localisation is implemented
+
+### :compass: Firebase artifacts
+
+* [x] Unhandled exceptions handling with Crashlytics
+* [x] Firebase SDK Authentication
+* [x] Via Google account Authentication
+* [x] Firebase Hosting Deploy
+* [x] Firebase Deploy trigger CI&CD pipeline
+
+### :compass: Architecture points
+
+* [x] Handles missing network errors
+* [x] Shared Preferences service support
+* [x] An entire project follows a certain architecture and state-management
+* [ ] Some DI or ServiceLocator library is used
+
+### :compass: CI&CD part
+
+* [x] Github Actions: formatting
+* [x] Github Actions: lint
+* [x] Github Actions: testing
+* [ ] Github Actions: build Android APK
+* [x] Github Actions: build Web with web-renderer html
+* [x] Github Actions: deploy Web to Firebase Hosting
+
+### Tests 
+* [x] Reasonable widget-tests
+* [ ] Reasonable integration-tests
+* [ ] Reasonable unit-tests for some domain logic entities
 
 ## Setup 
 ```@bash
