@@ -15,7 +15,6 @@ final settingsProvider = StateNotifierProvider<SettingsNotifier, SettingsState>(
     (ref) => SettingsNotifier(ref.read));
 
 class SettingsNotifier extends StateNotifier<SettingsState> {
-
   SettingsNotifier(this.read) : super(const SettingsState.initial()) {
     loadData();
   }

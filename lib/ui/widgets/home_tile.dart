@@ -1,8 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:belly_kitchen/providers/auth_provider.dart';
 import 'package:belly_kitchen/repository/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -118,12 +116,7 @@ class MealTile extends ConsumerWidget {
                     height: 32,
                     width: 32,
                     child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('fav')
-                          .doc(FirebaseAuth.instance.currentUser!.email)
-                          .collection('items')
-                          .where('mealId', isEqualTo: meal['mealId'].toString())
-                          .snapshots(),
+                      stream: database.isParticularMealFav(meal['mealId']),
                       builder: (context, snapshot) {
                         print(snapshot.toString());
                         print(snapshot.data.toString());

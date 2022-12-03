@@ -4,8 +4,7 @@ class ErrorScreen extends StatelessWidget {
   final Object? e;
   final StackTrace? stackTrace;
 
-  const ErrorScreen({Key? key, this.e, this.stackTrace})
-      : super(key: key);
+  const ErrorScreen({Key? key, this.e, this.stackTrace}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

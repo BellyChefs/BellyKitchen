@@ -56,8 +56,8 @@ class SearchTab extends ConsumerWidget {
                       child: Text('Some error occurred'),
                     );
                   }
-                  final List<QueryDocumentSnapshot<Object?>>? result =
-                  snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
+                  final List<QueryDocumentSnapshot<Object?>>? result = snapshot
+                      .data.docs as List<QueryDocumentSnapshot<Object?>>?;
 
                   return MealList(result!);
                 },

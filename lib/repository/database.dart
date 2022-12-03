@@ -28,6 +28,18 @@ class Database {
         .snapshots();
   }
 
+  Stream isParticularMealFav(String mealId) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    if (currentUser == null) return Stream.empty();
+    return FirebaseFirestore.instance
+        .collection('fav')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection('items')
+        .where('mealId', isEqualTo: mealId)
+        .snapshots();
+  }
+
   Stream allSearches() {
     var result = _firestore
         .collection('meals')

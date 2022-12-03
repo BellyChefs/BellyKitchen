@@ -14,7 +14,7 @@ class FavTab extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         body: ListView(
-          children:  [
+          children: [
             StreamBuilder<dynamic>(
               stream: database.allFav(),
               builder: (context, snapshot) {
@@ -29,14 +29,14 @@ class FavTab extends ConsumerWidget {
                   );
                 }
                 final List<QueryDocumentSnapshot<Object?>>? result =
-                snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
+                    snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
 
                 return MealList(result!);
               },
             ),
-            ],
-          ),
+          ],
         ),
+      ),
     );
   }
 }

@@ -21,5 +21,4 @@ class Assets {
   static const String iconsSalad = 'assets/icons/salad.svg';
   static const String iconsSoup = 'assets/icons/soup.svg';
   static const String iconsWatermelon = 'assets/icons/watermelon.svg';
-
 }

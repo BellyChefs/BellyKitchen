@@ -11,7 +11,8 @@ enum Category {
 }
 
 final recommendedProvider = FutureProvider<List<Meal>>((ref) async {
-  final List<Meal> recommendedMeals = await ref.read(repository).getRecommended();
+  final List<Meal> recommendedMeals =
+      await ref.read(repository).getRecommended();
   return recommendedMeals;
 });
 
@@ -20,8 +21,7 @@ final mealsProvider = FutureProvider<List<Meal>>((ref) async {
   return moreMeals;
 });
 
-final selectedCategoryProvider =
-    StateProvider<String>((ref) => 'vegs');
+final selectedCategoryProvider = StateProvider<String>((ref) => 'vegs');
 
 final searchTextProvider = StateProvider<String>((ref) => '');
 

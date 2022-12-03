@@ -5,9 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   group('Onboarding Screen meets requirements.', () {
-    setUp(() async {
-      
-    });
+    setUp(() async {});
 
     testWidgets('Onboarding Screen proceeded well.', (tester) async {
       await tester.pumpWidget(

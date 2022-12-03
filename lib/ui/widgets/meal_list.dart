@@ -20,6 +20,7 @@ class MealList extends ConsumerWidget {
             separatorBuilder: (context, index) => const Divider(),
             itemBuilder: (context, index) {
               final dynamic meal = mealList[index].data();
+              print('MealList: ${meal.toString()}');
               return Dismissible(
                 onDismissed: (_) async {
                   await database.removeMovie(mealList[index].id).then((res) {
