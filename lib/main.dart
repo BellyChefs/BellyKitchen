@@ -4,12 +4,14 @@ import 'package:belly_kitchen/providers/onboarding_provider.dart';
 import 'package:belly_kitchen/providers/settings_providers.dart';
 import 'package:belly_kitchen/repository/shared_prefs.dart';
 import 'package:belly_kitchen/ui/screens/about.dart';
+import 'package:belly_kitchen/ui/screens/auth.dart';
 import 'package:belly_kitchen/ui/screens/collection.dart';
 import 'package:belly_kitchen/ui/screens/general.dart';
 import 'package:belly_kitchen/ui/screens/login.dart';
 import 'package:belly_kitchen/ui/screens/no_internet.dart';
 import 'package:belly_kitchen/ui/screens/onboarding.dart';
 import 'package:belly_kitchen/ui/screens/profile.dart';
+import 'package:belly_kitchen/ui/screens/register.dart';
 import 'package:belly_kitchen/ui/screens/settings.dart';
 import 'package:belly_kitchen/ui/widgets/tabs/search_tab.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -62,7 +64,9 @@ class MyApp extends ConsumerWidget {
               '/settings': (context) => const Settings(),
               '/search': (context) => const SearchTab(),
               '/about': (context) => const About(),
-              '/login': (context) => const LoginPage(),
+              '/login': (context) =>  Login(),
+              '/register': (context) => Register(),
+              '/authchecker': (context) => const AuthChecker(),
               '/profile': (context) => const Profile(),
               '/collection': (context) => const Collection(
                     data: [],

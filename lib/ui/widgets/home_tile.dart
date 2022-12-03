@@ -1,10 +1,8 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:belly_kitchen/providers/auth_provider.dart';
+import 'package:belly_kitchen/models/meal.dart';
 import 'package:belly_kitchen/repository/database.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../models/meal.dart';
 
 class MealTile extends ConsumerWidget {
   const MealTile({Key? key, this.meal}) : super(key: key);
@@ -13,7 +11,6 @@ class MealTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final database = ref.watch(databaseProvider);
-    final userStatus = ref.watch(fireBaseAuthProvider);
     final List<dynamic> categories = meal['category'] as List<dynamic>;
     final category = categories.fold('', (previousValue, dynamic element) {
       return '$previousValue ⋅ ${element.toString()}';
@@ -25,7 +22,7 @@ class MealTile extends ConsumerWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0.0),
         ),
-        color: Colors.white70,
+        color: Theme.of(context).cardColor,
         elevation: 10,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +174,7 @@ class MealTile extends ConsumerWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline4
-                        ?.copyWith(fontSize: 16),
+                        ?.copyWith(fontSize: 14),
                   ),
                 ),
               ],

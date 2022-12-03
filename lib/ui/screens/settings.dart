@@ -85,18 +85,8 @@ class Settings extends HookConsumerWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      onPressed: () {
-                        authState.when<dynamic>(
-                            data: (data) {
-                              if (data != null)
-                                Navigator.pushNamed(context, '/profile');
-                              Navigator.pushNamed(context, '/login');
-                            },
-                            loading: () =>
-                                Navigator.pushNamed(context, '/login'),
-                            error: (e, trace) =>
-                                Navigator.pushNamed(context, '/login'));
-                      },
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/authchecker'),
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 18,

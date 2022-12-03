@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '242995410968',
     projectId: 'bellykitchen-619a4',
     storageBucket: 'bellykitchen-619a4.appspot.com',
-    iosClientId: '242995410968-fpk38n89ksmapnndmr994h1n6bt4lbm6.apps.googleusercontent.com',
+    iosClientId:
+        '242995410968-fpk38n89ksmapnndmr994h1n6bt4lbm6.apps.googleusercontent.com',
     iosBundleId: 'com.BellyChefs.bellyKitchen',
   );
 }

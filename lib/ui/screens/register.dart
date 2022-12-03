@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../providers/auth_provider.dart';
 import '../widgets/input_txt.dart';
 
-class Login extends HookConsumerWidget {
-  Login({Key? key}) : super(key: key);
+class Register extends HookConsumerWidget {
+  Register({Key? key}) : super(key: key);
 
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -20,13 +20,6 @@ class Login extends HookConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-            onPressed: () => Navigator.pop(context),
-            splashRadius: 24.0),
       ),
       body: SafeArea(
         child: Padding(
@@ -38,14 +31,14 @@ class Login extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 128),
+                  const SizedBox(height: 60),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Login",
+                          "Hey!",
                           style: Theme.of(context)
                               .textTheme
                               .headline1!
@@ -53,7 +46,7 @@ class Login extends HookConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          "Welcome back you're been missed.",
+                          "Nice to meet you here.",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ],
@@ -71,6 +64,11 @@ class Login extends HookConsumerWidget {
                     title: "Password",
                     controller: _password,
                   ),
+                  InputText(
+                    icon: Icons.password,
+                    title: "Repeat password",
+                    controller: _password,
+                  ),
                   const SizedBox(height: 32),
                   loading.value
                       ? Center(child: CircularProgressIndicator())
@@ -79,13 +77,13 @@ class Login extends HookConsumerWidget {
                             children: [
                               OutlinedButton(
                                 child: Text(
-                                  "Sign in.",
+                                  "Register me.",
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 onPressed: () async {
                                   loading.value = !loading.value;
                                   await auth
-                                      .signInWithEmailAndPassword(
+                                      .signUpWithEmailAndPassword(
                                           _email.text, _password.text, context)
                                       .whenComplete(
                                         () => auth.authStateChange.listen(
@@ -137,12 +135,11 @@ class Login extends HookConsumerWidget {
                         ),
                   Row(children: [
                     const Spacer(),
-                    Text('Not a member?',
+                    Text('Already have account?',
                         style: Theme.of(context).textTheme.bodyText1),
                     TextButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/register'),
-                      child: Text('Register now',
+                      onPressed: () => Navigator.pushNamed(context, '/login'),
+                      child: Text('Sign in',
                           style: Theme.of(context).textTheme.headline2),
                     ),
                     const Spacer(),
