@@ -1,4 +1,3 @@
-import 'package:belly_kitchen/main.dart';
 import 'package:belly_kitchen/models/meal.dart';
 import 'package:belly_kitchen/ui/widgets/on_tap_opacity.dart';
 import 'package:flutter/material.dart';
@@ -36,21 +35,7 @@ class _DetailsState extends State<Details> {
             onPressed: () => Navigator.pop(context),
             splashRadius: 24.0),
         actions: [
-          IconButton(
-              icon: Icon(
-                favMeals.contains(widget.data)
-                    ? Icons.bookmark
-                    : Icons.bookmark_outline_rounded,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {
-                setState(() {
-                  favMeals.contains(widget.data)
-                      ? favMeals.remove(widget.data)
-                      : favMeals.add(widget.data);
-                });
-              },
-              splashRadius: 24.0),
+          
         ],
       ),
       body: Padding(

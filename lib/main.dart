@@ -1,26 +1,35 @@
 import 'package:belly_kitchen/constants/theme.dart';
-import 'package:belly_kitchen/models/meal.dart';
+import 'package:belly_kitchen/providers/onboarding_provider.dart';
 import 'package:belly_kitchen/providers/settings_providers.dart';
+import 'package:belly_kitchen/repository/shared_prefs.dart';
 import 'package:belly_kitchen/ui/screens/about.dart';
 import 'package:belly_kitchen/ui/screens/collection.dart';
-import 'package:belly_kitchen/ui/screens/error.dart';
 import 'package:belly_kitchen/ui/screens/general.dart';
-import 'package:belly_kitchen/ui/screens/home.dart';
-import 'package:belly_kitchen/ui/screens/loading.dart';
 import 'package:belly_kitchen/ui/screens/login.dart';
 import 'package:belly_kitchen/ui/screens/onboarding.dart';
+import 'package:belly_kitchen/ui/screens/profile.dart';
 import 'package:belly_kitchen/ui/screens/settings.dart';
 import 'package:belly_kitchen/ui/widgets/tabs/search_tab.dart';
-import 'package:dotenv/dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-var dotenv = DotEnv(includePlatformEnvironment: true)..load();
-final List<Meal> favMeals = [];
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  await Firebase.initializeApp();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(
+          SharedPreferencesService(sharedPreferences),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -30,28 +39,15 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final onboardingViewModel = ref.read(onboardingProvider.notifier).state;
     final settings = ref.watch(settingsProvider);
     final themeMode = settings.maybeWhen(
         data: (data) =>
             data.themeMode == 'Light' ? ThemeMode.light : ThemeMode.dark,
         orElse: () => ThemeMode.system);
-    final initialize = ref.watch(firebaseInitializerProvider);
     return MaterialApp(
         title: 'Flutter Demo',
-        home:
-            // initialize.when(
-            //     data: (data) {
-            //       return const AuthChecker();
-            //     },
-            //     loading: () => const LoadingScreen(),
-            //     error: (e, stackTrace) => ErrorScreen(e: e, stackTrace: stackTrace)),
-            initialize.when(
-                data: (data) {
-                  return const Onboarding();
-                },
-                loading: () => const LoadingScreen(),
-                error: (e, stackTrace) =>
-                    ErrorScreen(e: e, stackTrace: stackTrace)),
+        home: !onboardingViewModel ? Onboarding() : Home(),
         routes: <String, WidgetBuilder>{
           '/home': (context) => const Home(),
           '/settings': (context) => const Settings(),

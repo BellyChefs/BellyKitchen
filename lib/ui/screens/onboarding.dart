@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Onboarding extends StatefulWidget {
+import '../../providers/onboarding_provider.dart';
+
+class Onboarding extends ConsumerWidget {
   const Onboarding({Key? key}) : super(key: key);
 
-  @override
-  OnboardingState createState() => OnboardingState();
-}
+  Future<void> onGetStarted(BuildContext context, WidgetRef ref) async {
+    final onboardingViewModel = ref.read(onboardingProvider.notifier);
+    await onboardingViewModel.completeOnboarding();
+  }
 
-class OnboardingState extends State<Onboarding> {
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
         body: Container(
           color: const Color.fromARGB(230, 255, 72, 15),
           child: Stack(
@@ -52,7 +55,10 @@ class OnboardingState extends State<Onboarding> {
                       'Get started',
                       style: TextStyle(fontSize: 12.0, color: Colors.white),
                     ),
-                    onPressed: () => Navigator.pushNamed(context, '/home'),
+                    onPressed: () {
+                      onGetStarted(context, ref);
+                      Navigator.pushNamed(context, '/home');
+                    },
                   ),
                 ),
               ]),

@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:belly_kitchen/providers/auth_provider.dart';
 import 'package:belly_kitchen/repository/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -131,7 +132,7 @@ class MealTile extends ConsumerWidget {
                           return IconButton(
                             icon: const Icon(Icons.favorite_border),
                             onPressed: () async {
-                              await database.addFav(
+                              final result = await database.addFav(
                                 Meal(
                                   time: meal['time'],
                                   title: meal['title'],
@@ -143,13 +144,20 @@ class MealTile extends ConsumerWidget {
                                   mealId: meal['mealId'],
                                 ),
                               );
+                              if (!result)
+                                await showOkAlertDialog(
+                                  context: context,
+                                  title: 'Login failed..',
+                                  message:
+                                      'Please  go to Settings, login first and try again.',
+                                );
                             },
                           );
                         } else {
                           return IconButton(
                             icon: const Icon(Icons.favorite),
                             onPressed: () async {
-                              await database.deleteFav(
+                              final result = await database.deleteFav(
                                 Meal(
                                   time: meal['time'],
                                   title: meal['title'],

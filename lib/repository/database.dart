@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/auth_provider.dart';
+import '../providers/meal_provider.dart';
 
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -18,51 +18,62 @@ class Database {
       .snapshots();
 
   Stream allFav() {
-    final authState = container.read(authStateProvider);
-    if (authState.value != null) {
-      return FirebaseFirestore.instance
-          .collection('fav')
-          .doc(FirebaseAuth.instance.currentUser!.email)
-          .collection('items')
-          .snapshots();
-    } else {
-      throw Exception('Login failed');
-    }
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    if (currentUser == null) return Stream.empty();
+    return FirebaseFirestore.instance
+        .collection('fav')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection('items')
+        .snapshots();
+  }
+
+  Stream allSearches() {
+    var result = _firestore
+        .collection('meals')
+        .where('category', arrayContains: '')
+        .snapshots();
+    container.listen<String>(
+      searchTextProvider,
+      (value, newValue) {
+        result = _firestore
+            .collection('meals')
+            .where('category', arrayContains: newValue)
+            .snapshots();
+      },
+    );
+    return result;
   }
 
   Future<dynamic> addFav(Meal meal) async {
-    final authState = container.read(authStateProvider);
-    if (authState.value != null) {
-      final FirebaseAuth _auth = FirebaseAuth.instance;
-      var currentUser = _auth.currentUser;
-      CollectionReference _collectionRef =
-          FirebaseFirestore.instance.collection('fav');
-      await _collectionRef.doc(currentUser!.email).collection('items').add(
-        {
-          'mealId': meal.mealId,
-          'calories': meal.calories,
-          'category': meal.category,
-          'image': meal.image,
-          'rate': meal.rate,
-          'time': meal.time,
-          'title': meal.title,
-          'video': meal.video,
-        },
-      );
-      return true;
-    } else {
-      print("Login failed");
-      return false;
-    }
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    if (currentUser == null) return false;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection('fav');
+    await _collectionRef.doc(currentUser.email).collection('items').add(
+      {
+        'mealId': meal.mealId,
+        'calories': meal.calories,
+        'category': meal.category,
+        'image': meal.image,
+        'rate': meal.rate,
+        'time': meal.time,
+        'title': meal.title,
+        'video': meal.video,
+      },
+    );
+    return true;
   }
 
   Future<dynamic> deleteFav(Meal meal) async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentUser = _auth.currentUser;
+    if (currentUser == null) return false;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('fav');
     final favToRemove = await _collectionRef
-        .doc(FirebaseAuth.instance.currentUser!.email)
+        .doc(currentUser.email)
         .collection('items')
         .where('mealId', isEqualTo: meal.mealId)
         .get();
@@ -70,10 +81,11 @@ class Database {
     final favToRemoveID = favToRemove.docs.last.id;
     print('favToRemoveID $favToRemoveID');
     await _collectionRef
-        .doc(FirebaseAuth.instance.currentUser!.email)
+        .doc(currentUser.email)
         .collection('items')
         .doc(favToRemoveID)
         .delete();
+    return true;
   }
 
   Future<bool> addNewMovie(Meal m) async {

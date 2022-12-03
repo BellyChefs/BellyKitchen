@@ -12,49 +12,50 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).shadowColor.withOpacity(0.1),
+              spreadRadius: 0,
+              blurRadius: 4,
+            )
+          ],
+        ),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.1),
-                spreadRadius: 0,
-                blurRadius: 4,
-              )
-            ],
+            color: Theme.of(context).canvasColor,
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              color: Theme.of(context).canvasColor,
+          child: Material(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
-            child: Material(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              child: InkWell(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
-                splashColor: Colors.transparent,
-                onTap: () => onPressed?.call(),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                  child: Row(
-                    children: [
-                      Icon(this.icon,
-                          color: Theme.of(context).primaryColorDark),
-                      const SizedBox(width: 16),
-                      Text(
-                        this.title,
-                        style: Theme.of(context).textTheme.headline6,
-                      )
-                    ],
-                  ),
+            child: InkWell(
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              splashColor: Colors.transparent,
+              onTap: () => onPressed?.call(),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                child: Row(
+                  children: [
+                    Icon(this.icon, color: Theme.of(context).primaryColorDark),
+                    const SizedBox(width: 16),
+                    Text(
+                      this.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    )
+                  ],
                 ),
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
