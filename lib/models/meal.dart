@@ -8,7 +8,7 @@ abstract class Meal with _$Meal {
   @Freezed(makeCollectionsUnmodifiable: false)
   factory Meal({
     required String title,
-    required int calories,
+    required num calories,
     required List<dynamic> category,
     required String video,
     required String time,

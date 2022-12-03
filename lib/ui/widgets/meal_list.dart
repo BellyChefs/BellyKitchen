@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../models/meal.dart';
+
 class MealList extends ConsumerWidget {
   MealList(this.mealList, {super.key});
 
@@ -23,10 +25,18 @@ class MealList extends ConsumerWidget {
               print('MealList: ${meal.toString()}');
               return Dismissible(
                 onDismissed: (_) async {
-                  await database.removeMovie(mealList[index].id).then((res) {
-                    if (res) {
-                    } else {}
-                  });
+                  await database.deleteFav(
+                    Meal(
+                      time: meal['time'],
+                      title: meal['title'],
+                      calories: meal['calories'],
+                      category: meal['category'],
+                      video: meal['video'],
+                      image: meal['image'],
+                      rate: meal['rate'],
+                      mealId: meal['mealId'],
+                    ),
+                  );
                 },
                 key: Key(mealList[index].id),
                 child: MealTile(meal: meal),

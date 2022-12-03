@@ -8,7 +8,7 @@ part of 'meal.dart';
 
 _$_Meal _$$_MealFromJson(Map<String, dynamic> json) => _$_Meal(
       title: json['title'] as String,
-      calories: json['calories'] as int,
+      calories: json['calories'] as num,
       category: json['category'] as List<dynamic>,
       video: json['video'] as String,
       time: json['time'] as String,

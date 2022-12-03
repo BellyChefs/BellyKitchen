@@ -100,36 +100,6 @@ class Database {
     return true;
   }
 
-  Future<bool> addNewMovie(Meal m) async {
-    _meals = _firestore.collection('meals');
-    try {
-      await _meals.add(
-        {
-          'title': m.title,
-          'calories': m.calories,
-          'image': m.image,
-          'time': m.time,
-          'video': m.video,
-          'category': m.category
-        },
-      );
-      return true;
-    } on Exception catch (e) {
-      return Future.error(e);
-    }
-  }
-
-  Future<bool> removeMovie(String movieId) async {
-    _meals = _firestore.collection('meals');
-    try {
-      await _meals.doc(movieId).delete();
-      return true;
-    } on Exception catch (e) {
-      print(e);
-      return Future.error(e);
-    }
-  }
-
   Future<bool> editMeal(Meal m, String mealId) async {
     _meals = _firestore.collection('meals');
     try {

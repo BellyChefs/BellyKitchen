@@ -21,7 +21,7 @@ Meal _$MealFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Meal {
   String get title => throw _privateConstructorUsedError;
-  int get calories => throw _privateConstructorUsedError;
+  num get calories => throw _privateConstructorUsedError;
   List<dynamic> get category => throw _privateConstructorUsedError;
   String get video => throw _privateConstructorUsedError;
   String get time => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $MealCopyWith<$Res> {
   @useResult
   $Res call(
       {String title,
-      int calories,
+      num calories,
       List<dynamic> category,
       String video,
       String time,
@@ -80,7 +80,7 @@ class _$MealCopyWithImpl<$Res, $Val extends Meal>
       calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ abstract class _$$_MealCopyWith<$Res> implements $MealCopyWith<$Res> {
   @useResult
   $Res call(
       {String title,
-      int calories,
+      num calories,
       List<dynamic> category,
       String video,
       String time,
@@ -152,7 +152,7 @@ class __$$_MealCopyWithImpl<$Res> extends _$MealCopyWithImpl<$Res, _$_Meal>
       calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       category: null == category
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$_Meal implements _Meal {
   @override
   final String title;
   @override
-  final int calories;
+  final num calories;
   final List<dynamic> _category;
   @override
   List<dynamic> get category {
@@ -271,7 +271,7 @@ class _$_Meal implements _Meal {
 abstract class _Meal implements Meal {
   factory _Meal(
       {required final String title,
-      required final int calories,
+      required final num calories,
       required final List<dynamic> category,
       required final String video,
       required final String time,
@@ -284,7 +284,7 @@ abstract class _Meal implements Meal {
   @override
   String get title;
   @override
-  int get calories;
+  num get calories;
   @override
   List<dynamic> get category;
   @override
