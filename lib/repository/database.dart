@@ -10,9 +10,12 @@ class Database {
   final container = ProviderContainer();
   late CollectionReference _meals;
 
-  Stream get allVegs => _firestore.collection('vegs').snapshots();
-
   Stream get allMeals => _firestore.collection('meals').snapshots();
+
+  Stream getMealsByCategory(String category) => _firestore
+      .collection('meals')
+      .where('category', arrayContains: category)
+      .snapshots();
 
   Stream allFav() {
     final authState = container.read(authStateProvider);

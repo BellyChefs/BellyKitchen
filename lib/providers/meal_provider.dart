@@ -21,15 +21,7 @@ final mealsProvider = FutureProvider<List<Meal>>((ref) async {
 });
 
 final selectedCategoryProvider =
-    StateProvider<Category>((ref) => Category.category0);
-
-final mealByCategoryProvider = FutureProvider<List<Meal>>((ref) async {
-  final selectedCategory = ref.watch(searchTextProvider);
-  final List<Meal> categoryMeals = await ref
-      .read(repository)
-      .getMealsByCategory(selectedCategory.toString());
-  return categoryMeals;
-});
+    StateProvider<String>((ref) => 'vegs');
 
 final searchTextProvider = StateProvider<String>((ref) => '');
 

@@ -22,12 +22,32 @@ final categories = {
   {'assets/icons/soup.svg', 'Soup'},
 };
 
-Category parseCategory(int index) {
+String parseCategory(int index) {
   switch (index) {
     case 0:
-      return Category.category0;
+      return 'beer';
+    case 1:
+      return 'bread';
+    case 2:
+      return 'vegs';
+    case 3:
+      return 'cakes';
+    case 4:
+      return 'bakery';
+    case 5:
+      return 'junk';
+    case 6:
+      return 'meat';
+    case 7:
+      return 'popcorn';
+    case 8:
+      return 'noodle';
+    case 9:
+      return 'salad';
+    case 10:
+      return 'soup';
     default:
-      return Category.category0;
+      return 'vegs';
   }
 }
 
@@ -77,25 +97,26 @@ class HomeTab extends ConsumerWidget {
                         width: 100.0,
                         height: 120.0,
                         child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0, vertical: 10.0),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(16.0),
-                              border: Border.all(color: Colors.black26),
-                            ),
-                            child: Column(
-                              children: [
-                                SvgPicture.asset(
-                                  categories.elementAt(index).first,
-                                ),
-                                const Spacer(),
-                                Text(
-                                  categories.elementAt(index).last,
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
-                              ],
-                            )),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0, vertical: 10.0),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(16.0),
+                            border: Border.all(color: Colors.black26),
+                          ),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                categories.elementAt(index).first,
+                              ),
+                              const Spacer(),
+                              Text(
+                                categories.elementAt(index).last,
+                                style: Theme.of(context).textTheme.caption,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),

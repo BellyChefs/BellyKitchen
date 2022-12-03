@@ -7,14 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Collection extends ConsumerWidget {
-
-  const Collection({required this.data, Key? key,}) : super(key: key);
+  const Collection({
+    required this.data,
+    Key? key,
+  }) : super(key: key);
   final List<Meal> data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final database = ref.watch(databaseProvider);
-    final mealByCategory = ref.watch(mealByCategoryProvider);
+    final mealByCategory = ref.watch(selectedCategoryProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -30,12 +32,13 @@ class Collection extends ConsumerWidget {
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 64.0, bottom: 20, right: 24.0, left: 24.0),
-            child: Text('Explore',
-                style: Theme.of(context).textTheme.headline1),
+            padding: const EdgeInsets.only(
+                top: 64.0, bottom: 20, right: 24.0, left: 24.0),
+            child:
+                Text('Explore', style: Theme.of(context).textTheme.headline1),
           ),
           StreamBuilder<dynamic>(
-            stream: database.allVegs,
+            stream: database.getMealsByCategory(mealByCategory),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(
@@ -48,7 +51,7 @@ class Collection extends ConsumerWidget {
                 );
               }
               final List<QueryDocumentSnapshot<Object?>>? result =
-              snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
+                  snapshot.data.docs as List<QueryDocumentSnapshot<Object?>>?;
 
               return MealList(result!);
             },
