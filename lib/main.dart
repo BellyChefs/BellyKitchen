@@ -1,4 +1,5 @@
 import 'package:belly_kitchen/constants/theme.dart';
+import 'package:belly_kitchen/providers/network_provider.dart';
 import 'package:belly_kitchen/providers/onboarding_provider.dart';
 import 'package:belly_kitchen/providers/settings_providers.dart';
 import 'package:belly_kitchen/repository/shared_prefs.dart';
@@ -6,6 +7,7 @@ import 'package:belly_kitchen/ui/screens/about.dart';
 import 'package:belly_kitchen/ui/screens/collection.dart';
 import 'package:belly_kitchen/ui/screens/general.dart';
 import 'package:belly_kitchen/ui/screens/login.dart';
+import 'package:belly_kitchen/ui/screens/no_internet.dart';
 import 'package:belly_kitchen/ui/screens/onboarding.dart';
 import 'package:belly_kitchen/ui/screens/profile.dart';
 import 'package:belly_kitchen/ui/screens/settings.dart';
@@ -23,6 +25,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final sharedPreferences = await SharedPreferences.getInstance();
+
   runApp(
     ProviderScope(
       overrides: [
@@ -43,27 +46,36 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final onboardingViewModel = ref.read(onboardingProvider.notifier).state;
+    bool isNetworkEnabled =
+        ref.watch(handleMissingNetworkProvider).isNetworkEnabled;
     final settings = ref.watch(settingsProvider);
     final themeMode = settings.maybeWhen(
         data: (data) =>
             data.themeMode == 'Light' ? ThemeMode.light : ThemeMode.dark,
         orElse: () => ThemeMode.system);
-    return MaterialApp(
-        title: 'Flutter Demo',
-        home: !onboardingViewModel ? Onboarding() : Home(),
-        routes: <String, WidgetBuilder>{
-          '/home': (context) => const Home(),
-          '/settings': (context) => const Settings(),
-          '/search': (context) => const SearchTab(),
-          '/about': (context) => const About(),
-          '/login': (context) => const LoginPage(),
-          '/profile': (context) => const Profile(),
-          '/collection': (context) => const Collection(
-                data: [],
-              )
-        },
-        themeMode: themeMode,
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark);
+    return isNetworkEnabled
+        ? MaterialApp(
+            title: 'Flutter Demo',
+            home: !onboardingViewModel ? Onboarding() : Home(),
+            routes: <String, WidgetBuilder>{
+              '/home': (context) => const Home(),
+              '/settings': (context) => const Settings(),
+              '/search': (context) => const SearchTab(),
+              '/about': (context) => const About(),
+              '/login': (context) => const LoginPage(),
+              '/profile': (context) => const Profile(),
+              '/collection': (context) => const Collection(
+                    data: [],
+                  )
+            },
+            themeMode: themeMode,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark)
+        : MaterialApp(
+            home: NoInternet(),
+            themeMode: themeMode,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+          );
   }
 }
