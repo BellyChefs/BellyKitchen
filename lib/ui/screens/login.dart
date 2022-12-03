@@ -80,7 +80,7 @@ class Login extends HookConsumerWidget {
                               OutlinedButton(
                                 child: Text(
                                   "Sign in.",
-                                  style: TextStyle(fontSize: 20),
+                                  style: Theme.of(context).textTheme.headline3,
                                 ),
                                 onPressed: () async {
                                   loading.value = !loading.value;
@@ -106,10 +106,9 @@ class Login extends HookConsumerWidget {
                                 ),
                               ),
                               OutlinedButton(
-                                child: Text(
-                                  "Or with Google.",
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                                child: Text("Or with Google.",
+                                    style:
+                                        Theme.of(context).textTheme.headline3),
                                 onPressed: () async {
                                   loading.value = !loading.value;
                                   await auth

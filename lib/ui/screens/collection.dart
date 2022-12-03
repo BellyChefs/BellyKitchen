@@ -35,7 +35,7 @@ class Collection extends ConsumerWidget {
             padding: const EdgeInsets.only(
                 top: 64.0, bottom: 20, right: 24.0, left: 24.0),
             child:
-                Text('Explore', style: Theme.of(context).textTheme.headline1),
+                Text('Explore ${mealByCategory.toUpperCase()}', style: Theme.of(context).textTheme.headline1),
           ),
           StreamBuilder<dynamic>(
             stream: database.getMealsByCategory(mealByCategory),

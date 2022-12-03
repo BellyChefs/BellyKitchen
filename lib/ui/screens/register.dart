@@ -76,10 +76,9 @@ class Register extends HookConsumerWidget {
                           child: Column(
                             children: [
                               OutlinedButton(
-                                child: Text(
-                                  "Register me.",
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                                child: Text("Register me.",
+                                    style:
+                                        Theme.of(context).textTheme.headline3),
                                 onPressed: () async {
                                   loading.value = !loading.value;
                                   await auth
@@ -104,10 +103,9 @@ class Register extends HookConsumerWidget {
                                 ),
                               ),
                               OutlinedButton(
-                                child: Text(
-                                  "Or with Google.",
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                                child: Text("Or with Google.",
+                                    style:
+                                        Theme.of(context).textTheme.headline3),
                                 onPressed: () async {
                                   loading.value = !loading.value;
                                   await auth

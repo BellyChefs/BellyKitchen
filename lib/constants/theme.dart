@@ -22,25 +22,25 @@ class AppTheme {
           fontSize: 18,
         ),
         headline1: GoogleFonts.mulish(
-            color: Colors.black87, fontSize: 40, fontWeight: FontWeight.w800),
+            color: Colors.black87, fontSize: 24, fontWeight: FontWeight.w800),
         headline2: GoogleFonts.mulish(
             color: const Color.fromARGB(230, 255, 72, 15),
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: FontWeight.w600),
         headline3: GoogleFonts.mulish(
-            color: Colors.black, fontSize: 22, fontWeight: FontWeight.w500),
+            color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
         headline4: GoogleFonts.mulish(
           color: Colors.black,
-          fontSize: 18,
+          fontSize: 10,
         ),
         headline5: GoogleFonts.mulish(
           color: Colors.black45,
-          fontSize: 14,
+          fontSize: 12,
         ),
         headline6: GoogleFonts.mulish(
-            color: Colors.black87, fontSize: 32, fontWeight: FontWeight.w800),
+            color: Colors.black87, fontSize: 24, fontWeight: FontWeight.w800),
         subtitle1: GoogleFonts.mulish(
-            color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
+            color: Colors.white, fontSize: 10, fontWeight: FontWeight.w400),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         hoverColor: Colors.white,
@@ -82,22 +82,22 @@ class AppTheme {
             color: Colors.white70, fontSize: 24, fontWeight: FontWeight.w800),
         headline2: GoogleFonts.mulish(
             color: const Color.fromARGB(230, 255, 72, 15),
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: FontWeight.w600),
         headline3: GoogleFonts.mulish(
-            color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
         headline4: GoogleFonts.mulish(
           color: Colors.white,
-          fontSize: 18,
+          fontSize: 10,
         ),
         headline5: GoogleFonts.mulish(
           color: Colors.white54,
-          fontSize: 14,
+          fontSize: 12,
         ),
         headline6: GoogleFonts.mulish(
             color: Colors.white, fontSize: 24, fontWeight: FontWeight.w800),
         subtitle1: GoogleFonts.mulish(
-            color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
+            color: Colors.white, fontSize: 10, fontWeight: FontWeight.w400),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         hoverColor: Colors.black,

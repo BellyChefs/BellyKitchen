@@ -8,7 +8,7 @@ class SharedPreferencesService {
   SharedPreferencesService(this.sharedPreferences);
   final SharedPreferences sharedPreferences;
 
-  static const onboardingCompleteKey = 'onboardingComplete';
+  static const onboardingCompleteKey = 'onboardingComplete1';
 
   Future<void> setOnboardingComplete() async {
     await sharedPreferences.setBool(onboardingCompleteKey, true);

@@ -173,8 +173,7 @@ class MealTile extends ConsumerWidget {
                     meal['time'].toString(),
                     style: Theme.of(context)
                         .textTheme
-                        .headline4
-                        ?.copyWith(fontSize: 14),
+                        .headline4,
                   ),
                 ),
               ],

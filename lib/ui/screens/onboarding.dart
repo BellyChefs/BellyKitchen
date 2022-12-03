@@ -15,7 +15,7 @@ class Onboarding extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
         body: Container(
-          color: const Color.fromARGB(230, 255, 72, 15),
+          color: const Color.fromARGB(255, 255, 89, 47),
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
             children: [
@@ -62,12 +62,9 @@ class Onboarding extends ConsumerWidget {
                   ),
                 ),
               ]),
-              Padding(
-                padding: const EdgeInsets.only(top: 200.0),
-                child: Center(
-                  child: Image.asset('assets/icon.jpeg',
-                      height: 400, fit: BoxFit.fitHeight),
-                ),
+              Center(
+                child: Image.asset('assets/icon.jpeg',
+                    height: 300, fit: BoxFit.fitHeight),
               ),
             ],
           ),
