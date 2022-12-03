@@ -64,8 +64,10 @@ class Onboarding extends ConsumerWidget {
               ]),
               Padding(
                 padding: const EdgeInsets.only(top: 200.0),
-                child: Image.asset('assets/icon.jpeg',
-                    height: 400, fit: BoxFit.fitHeight),
+                child: Center(
+                  child: Image.asset('assets/icon.jpeg',
+                      height: 400, fit: BoxFit.fitHeight),
+                ),
               ),
             ],
           ),
