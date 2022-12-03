@@ -34,9 +34,7 @@ class _DetailsState extends State<Details> {
             ),
             onPressed: () => Navigator.pop(context),
             splashRadius: 24.0),
-        actions: [
-          
-        ],
+        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
