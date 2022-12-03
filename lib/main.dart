@@ -64,7 +64,7 @@ class MyApp extends ConsumerWidget {
               '/settings': (context) => const Settings(),
               '/search': (context) => const SearchTab(),
               '/about': (context) => const About(),
-              '/login': (context) =>  Login(),
+              '/login': (context) => Login(),
               '/register': (context) => Register(),
               '/authchecker': (context) => const AuthChecker(),
               '/profile': (context) => const Profile(),

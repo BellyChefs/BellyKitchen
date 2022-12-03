@@ -63,8 +63,11 @@ class Profile extends ConsumerWidget {
                         'Username: ${data.currentUser!.displayName ?? 'Anonymous'}',
                         'Email: ${data.currentUser!.email ?? 'No email provided'}',
                         'Telephone: ${data.currentUser!.phoneNumber ?? 'No phone Number provided'}',
-                        'Account created: '+data.currentUser!.metadata.creationTime.toString(),
-                        'Last seen: '+data.currentUser!.metadata.lastSignInTime.toString(),
+                        'Account created: ' +
+                            data.currentUser!.metadata.creationTime.toString(),
+                        'Last seen: ' +
+                            data.currentUser!.metadata.lastSignInTime
+                                .toString(),
                       ],
                     ),
                   ),
